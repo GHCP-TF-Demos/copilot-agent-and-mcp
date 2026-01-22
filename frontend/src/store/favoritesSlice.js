@@ -33,6 +33,21 @@ export const removeFavorite = createAsyncThunk('favorites/removeFavorite', async
   return bookId;
 });
 
+export const updateComment = createAsyncThunk('favorites/updateComment', async ({ token, bookId, comment }) => {
+  const res = await fetch(`http://localhost:4000/api/favorites/${bookId}/comment`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ comment }),
+  });
+  if (!res.ok) {
+    throw new Error('Failed to update comment');
+  }
+  return { bookId, comment };
+});
+
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: { items: [], status: 'idle' },
@@ -51,6 +66,13 @@ const favoritesSlice = createSlice({
       .addCase(removeFavorite.fulfilled, (state, action) => {
         // Remove the book from the state directly
         state.items = state.items.filter(book => book.id !== action.payload);
+      })
+      .addCase(updateComment.fulfilled, (state, action) => {
+        // Update the comment in the state
+        const book = state.items.find(b => b.id === action.payload.bookId);
+        if (book) {
+          book.comment = action.payload.comment;
+        }
       });
   },
 });

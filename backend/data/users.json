@@ -3,15 +3,14 @@
     "username": "sandra",
     "password": "sandra",
     "favorites": [
-      "1",
-      "2",
-      "7",
-      "15",
-      "9",
-      "6",
-      "5",
-      "16",
-      "14"
+      { "bookId": "1", "comment": "" },
+      { "bookId": "7", "comment": "" },
+      { "bookId": "15", "comment": "" },
+      { "bookId": "9", "comment": "" },
+      { "bookId": "6", "comment": "" },
+      { "bookId": "5", "comment": "" },
+      { "bookId": "16", "comment": "" },
+      { "bookId": "14", "comment": "" }
     ]
   },
   {
