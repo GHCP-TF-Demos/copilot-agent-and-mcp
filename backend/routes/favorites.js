@@ -1,7 +1,17 @@
 const express = require('express');
+const RateLimit = require('express-rate-limit');
 
 function createFavoritesRouter({ usersFile, booksFile, readJSON, writeJSON, authenticateToken }) {
   const router = express.Router();
+
+  const favoritesLimiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs for favorites routes
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  router.use(favoritesLimiter);
 
   router.get('/', authenticateToken, (req, res) => {
     const users = readJSON(usersFile);
@@ -23,6 +33,21 @@ function createFavoritesRouter({ usersFile, booksFile, readJSON, writeJSON, auth
       writeJSON(usersFile, users);
     }
     res.status(200).json({ message: 'Book added to favorites' });
+  });
+
+  // generated-by-copilot: DELETE endpoint to remove a book from favorites
+  router.delete('/:bookId', authenticateToken, (req, res) => {
+    const { bookId } = req.params;
+    if (!bookId) return res.status(400).json({ message: 'Book ID required' });
+    const users = readJSON(usersFile);
+    const user = users.find(u => u.username === req.user.username);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    const index = user.favorites.indexOf(bookId);
+    if (index !== -1) {
+      user.favorites.splice(index, 1);
+      writeJSON(usersFile, users);
+    }
+    res.status(200).json({ message: 'Book removed from favorites' });
   });
 
   return router;
