@@ -48,10 +48,14 @@ describe('Book Favorites App', () => {
     // Check if there are any favorites to remove
     cy.get('body').then(($body) => {
       if ($body.text().includes('Remove')) {
-        // Click the first remove button
-        cy.get('button').contains('Remove').first().click();
-        // Wait for the UI to update
-        cy.wait(1000);
+        // Count the initial number of Remove buttons
+        cy.get('button').contains('Remove').then($buttons => {
+          const initialCount = $buttons.length;
+          // Click the first remove button
+          cy.get('button').contains('Remove').first().click();
+          // Wait for the count to decrease
+          cy.get('button').contains('Remove').should('have.length', initialCount - 1);
+        });
       }
     });
   });

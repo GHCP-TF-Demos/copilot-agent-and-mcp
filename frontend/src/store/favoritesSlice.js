@@ -44,6 +44,10 @@ const favoritesSlice = createSlice({
       .addCase(fetchFavorites.rejected, state => { state.status = 'failed'; })
       .addCase(addFavorite.fulfilled, (state, action) => {
         // After adding, fetch the updated favorites list to ensure UI is in sync
+      })
+      .addCase(removeFavorite.fulfilled, (state, action) => {
+        // Remove the book from the state directly
+        state.items = state.items.filter(book => book.id !== action.payload);
       });
   },
 });
