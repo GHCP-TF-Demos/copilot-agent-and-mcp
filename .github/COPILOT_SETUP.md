@@ -123,11 +123,12 @@ To add additional MCP servers, edit `.vscode/mcp.json`:
 
 ### Available Official MCP Servers
 
-- `@modelcontextprotocol/server-filesystem` - File operations
-- `@modelcontextprotocol/server-git` - Git operations
-- `@modelcontextprotocol/server-memory` - Persistent memory
-- `@modelcontextprotocol/server-fetch` - Web content fetching
-- `@modelcontextprotocol/server-time` - Time and timezone utilities
+- `@modelcontextprotocol/server-filesystem` - File operations (official)
+- `mcp-git` - Git operations (community)
+- `@modelcontextprotocol/server-memory` - Persistent memory (official)
+- `mcp-fetch-server` - Web content fetching (community)
+- `@modelcontextprotocol/server-time` - Time and timezone utilities (official)
+- `@modelcontextprotocol/server-everything` - Reference/test server with multiple features (official)
 
 Browse more at: https://registry.modelcontextprotocol.io/
 

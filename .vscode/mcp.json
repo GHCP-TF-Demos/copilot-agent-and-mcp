@@ -22,8 +22,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-git",
-        "--repository",
+        "mcp-git",
         "/home/runner/work/copilot-agent-and-mcp/copilot-agent-and-mcp"
       ],
       "env": {}
@@ -32,7 +31,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-fetch"
+        "mcp-fetch-server"
       ],
       "env": {}
     }
