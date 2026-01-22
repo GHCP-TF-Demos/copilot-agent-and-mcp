@@ -6,7 +6,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/home/runner/work/copilot-agent-and-mcp/copilot-agent-and-mcp"
+        "."
       ],
       "env": {}
     },
@@ -23,7 +23,7 @@
       "args": [
         "-y",
         "mcp-git",
-        "/home/runner/work/copilot-agent-and-mcp/copilot-agent-and-mcp"
+        "."
       ],
       "env": {}
     },

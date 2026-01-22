@@ -32,7 +32,7 @@ MCP servers are configured in `.vscode/mcp.json` and provide Copilot with enhanc
 #### 1. Filesystem Server
 - **Purpose**: Secure file operations within the project directory
 - **Capabilities**: Read, write, search, and manage files
-- **Scope**: Limited to project directory for security
+- **Scope**: Limited to project directory (uses relative path `.`)
 - **Use Cases**: 
   - Code navigation and search
   - File manipulation
@@ -49,7 +49,7 @@ MCP servers are configured in `.vscode/mcp.json` and provide Copilot with enhanc
 #### 3. Git Server
 - **Purpose**: Repository management and version control
 - **Capabilities**: Read git history, search commits, view diffs
-- **Scope**: Limited to the project repository
+- **Scope**: Limited to the project repository (uses relative path `.`)
 - **Use Cases**:
   - Understanding code history
   - Searching for changes
