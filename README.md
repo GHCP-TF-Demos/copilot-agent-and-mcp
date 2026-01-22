@@ -34,6 +34,16 @@ Book Favorites is a full-stack web application that allows users to:
   - Clear empty states and error handling
   - Modern UI/UX with attention to navigation and feedback
 
+## GitHub Copilot Configuration
+
+This project is enhanced with custom GitHub Copilot instructions and Model Context Protocol (MCP) servers for improved AI-assisted development:
+
+- **Custom Instructions**: Project-specific guidelines, security best practices, and development workflows
+- **MCP Servers**: Filesystem, Git, Memory, and Fetch servers for enhanced context awareness
+- **Best Practices**: Follows Microsoft and GitHub security and coding standards
+
+📖 **[Read the full Copilot Configuration Guide](.github/COPILOT_SETUP.md)**
+
 ---
 
 ## Setup
