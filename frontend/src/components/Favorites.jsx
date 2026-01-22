@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { fetchFavorites } from '../store/favoritesSlice';
+import { fetchFavorites, removeFavorite } from '../store/favoritesSlice';
 import { useNavigate } from 'react-router-dom';
+import styles from '../styles/BookList.module.css';
 
 const Favorites = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,16 @@ const Favorites = () => {
     }
     dispatch(fetchFavorites(token));
   }, [dispatch, token, navigate]);
+
+  // generated-by-copilot: handler for removing a book from favorites
+  const handleRemoveFavorite = async (bookId) => {
+    if (!token) {
+      navigate('/');
+      return;
+    }
+    await dispatch(removeFavorite({ token, bookId }));
+    dispatch(fetchFavorites(token));
+  };
 
   if (status === 'loading') return <div>Loading...</div>;
   if (status === 'failed') return <div>Failed to load favorites.</div>;
@@ -41,13 +52,20 @@ const Favorites = () => {
           </p>
         </div>
       ) : (
-        <ul>
+        <div className={styles.bookGrid}>
           {favorites.map(book => (
-            <li key={book.id}>
-              <strong>{book.title}</strong> by {book.author}
-            </li>
+            <div className={styles.bookCard} key={book.id}>
+              <div className={styles.bookTitle}>{book.title}</div>
+              <div className={styles.bookAuthor}>by {book.author}</div>
+              <button
+                className={styles.simpleBtn}
+                onClick={() => handleRemoveFavorite(book.id)}
+              >
+                Remove
+              </button>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
