@@ -1,12 +1,39 @@
 {
-  "inputs": [
-  ],
+  "inputs": [],
   "servers": {
-    "book-database": {
-      "command": "node",
+    "filesystem": {
+      "command": "npx",
       "args": [
-        "/path-to/github-copilot-agent/book-database/build/index.js"
-      ]
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ],
+      "env": {}
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {}
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-git",
+        "."
+      ],
+      "env": {}
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-fetch-server"
+      ],
+      "env": {}
     }
   }
 }
